@@ -1,0 +1,4 @@
+multiineString: > #| this pipe is use to seperate the lines
+  this is a single line
+  this is next line 
+  some other stuff

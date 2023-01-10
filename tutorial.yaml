@@ -1,0 +1,40 @@
+# #this is how we are doing the commments in yaml
+# microservice: #this is a object
+#   - app: user-authentication # these are become the attribute of the microservices
+#     port: 9000
+#     versions: 
+#     -1.7
+#     -1.8
+#     -1.9 
+# #yaml validator https://www.yamllint.com/
+
+#   - app: shopping-cart
+#     port: 9002
+#     version: 2.0
+
+# microservices:
+#   - user-authentication
+#   - shopping-cart
+  
+#this is how the real kubernetes configuration file
+
+apiVersion: v1
+kind: Pod 
+metadata: 
+  name: nginx
+  lables:
+    app: nginx
+spec:
+  containers: 
+  - name: nginx-container
+    image: nginx
+    ports: 
+    - containerPort: 80
+    volumeMounts:
+    - name: nginx-vol
+      mountPath: /usr/nginx/html
+  - name: sidecar-container
+    image: curlimages/curl
+    command: ["/bin/sh"]
+    args: ["-c","echo Hello from the sidecar container;sleep 300"]
+
